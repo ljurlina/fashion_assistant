@@ -110,6 +110,12 @@ class _CameraScreenState extends State<CameraScreen> {
       wardrobeImageCategories: wardrobeImageCategories,
     );
 
+    await WardrobeService.saveScanToHistory(
+      imageBytes: _imageBytes!,
+      recommendation: result.recommendation.name,
+      reasoning: result.reasoning,
+    );
+
     if (mounted) {
       Navigator.pushReplacement(
         context,
@@ -160,6 +166,7 @@ class _CameraScreenState extends State<CameraScreen> {
     final success = await WardrobeService.addItemToCloset(
       imageBytes: _imageBytes!,
       category: result.category,
+      color: result.color,
     );
 
     if (mounted) {

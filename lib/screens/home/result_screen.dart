@@ -24,10 +24,12 @@ class _ResultScreenState extends State<ResultScreen> {
   bool _isSaving = false;
 
   Future<void> _saveToCloset() async {
+    if (_isSaving) return;
     setState(() => _isSaving = true);
     final success = await WardrobeService.addItemToCloset(
       imageBytes: widget.imageBytes,
       category: widget.result.category,
+      color: widget.result.color,
     );
     if (!mounted) return;
     setState(() => _isSaving = false);
@@ -250,16 +252,16 @@ class _ResultScreenState extends State<ResultScreen> {
 
   Widget _buildActionButton() {
     String label;
-    VoidCallback onPressed;
+    VoidCallback? onPressed;          // bilo: VoidCallback onPressed;
 
     switch (widget.result.recommendation) {
       case BuyRecommendation.yes:
         label = '+ Add to my closet';
-        onPressed = _isSaving ? () {} : _saveToCloset;
+        onPressed = _isSaving ? null : _saveToCloset;
         break;
       case BuyRecommendation.maybe:
         label = 'Add to closet anyway';
-        onPressed = _isSaving ? () {} : _saveToCloset;
+        onPressed = _isSaving ? null : _saveToCloset;    
         break;
       case BuyRecommendation.no:
         label = 'Skip';

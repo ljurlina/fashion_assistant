@@ -48,6 +48,37 @@ class WardrobeService {
     }
   }
 
+  static Future<void> saveScanToHistory({
+    required Uint8List imageBytes,
+    required String recommendation,
+    required String reasoning,
+  }) async {
+    try {
+      final user = _supabase.auth.currentUser;
+      if (user == null) return;
+
+      final fileName = '${user.id}/${DateTime.now().millisecondsSinceEpoch}.jpg';
+      await _supabase.storage.from('scanned-images').uploadBinary(
+            fileName,
+            imageBytes,
+            fileOptions: const FileOptions(
+              contentType: 'image/jpeg',
+              upsert: false,
+            ),
+          );
+      final imageUrl =
+          _supabase.storage.from('scanned-images').getPublicUrl(fileName);
+
+      await _supabase.from('scan_history').insert({
+        'scanned_image_url': imageUrl,
+        'recommendation': recommendation,
+        'ai_response': reasoning,
+      });
+    } catch (e) {
+      if (kDebugMode) print('Error saving scan history: $e');
+    }
+  }
+
   static Future<Map<String, List<WardrobeItem>>> getWardrobeItems() async {
     try {
       final userId = _supabase.auth.currentUser?.id;

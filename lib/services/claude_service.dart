@@ -10,11 +10,13 @@ class AnalysisResult {
   final BuyRecommendation recommendation;
   final String reasoning;
   final String category;
+  final String color;
 
   AnalysisResult({
     required this.recommendation,
     required this.reasoning,
     required this.category,
+    required this.color,
   });
 }
 
@@ -58,6 +60,7 @@ IMPORTANT: First check if the first image actually shows a clothing item. If it 
 {
   "recommendation": "NOT_CLOTHING",
   "category": "other",
+  "color": "unknown",
   "reasoning": "This doesn't appear to be a clothing item. Please take a photo of a shirt, pants, shoes, or similar garment."
 }
 
@@ -84,6 +87,7 @@ RESPONSE FORMAT (strict JSON):
 {
   "recommendation": "YES" or "MAYBE" or "NO" or "NOT_CLOTHING",
   "category": "tops" or "bottoms" or "footwear" or "other",
+  "color": "dominant color of the item in one lowercase word (e.g. black, white, beige, navy)",
   "reasoning": "Short 1-2 sentence explanation. If duplicate, mention it specifically."
 }
 
@@ -174,6 +178,7 @@ Respond ONLY with the JSON, no other text.
       final recommendationStr = ((aiJson['recommendation'] as String?) ?? 'MAYBE').toUpperCase();
       final reasoning = (aiJson['reasoning'] as String?) ?? 'No reasoning provided.';
       final category = ((aiJson['category'] as String?) ?? 'other').toLowerCase();
+      final color = ((aiJson['color'] as String?) ?? 'unknown').toLowerCase();   // NOVO
 
       BuyRecommendation recommendation;
       switch (recommendationStr) {
@@ -197,6 +202,7 @@ Respond ONLY with the JSON, no other text.
         recommendation: recommendation,
         reasoning: reasoning,
         category: category,
+        color: color,
       );
     } on TimeoutException {
       throw Exception('Request timed out. Check your connection and try again.');
