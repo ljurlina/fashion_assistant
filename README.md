@@ -33,17 +33,17 @@ The user interface was fully conceptualized and designed in Figma before impleme
 
 ## Built With
 
-- **Framework:** [Flutter](https://flutter.dev/) (Dart)
-- **Backend & Database:** [Supabase](https://supabase.com/)
+- **Framework:** Flutter (Dart)
+- **Backend & Database:** Supabase
 - **AI Model:** Claude Haiku 4.5
-- **Design:** [Figma](https://www.figma.com/)
+- **Design:** Figma
 
 ---
 
 ## Getting Started
 ### Prerequisites
 
-- Make sure you have the [Flutter SDK](https://docs.flutter.dev/get-started/install) installed.
+- Make sure you have the Flutter SDK installed.
 - A Supabase account and a Claude API key.
 
 ### Installation
