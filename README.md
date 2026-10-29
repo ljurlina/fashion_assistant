@@ -6,7 +6,7 @@
 
 > A Flutter mobile application designed to combat overconsumption in fashion. Before making a new purchase, the app analyzes your existing wardrobe to help you decide whether you truly need the item.
 
-Built as an undergraduate thesis at **FERIT Osijek**.
+Built as an undergraduate thesis at FERIT Osijek.
 
 ---
 
@@ -21,13 +21,13 @@ Built as an undergraduate thesis at **FERIT Osijek**.
 
 ## How It Works
 
-Unlike traditional approaches that require training and hosting custom computer vision models, **Smart Fashion Assistant** leverages multimodal Large Language Models (**Claude**). Images of your existing clothes and the new item are sent directly within the prompt alongside contextual data for accurate and cost-effective analysis.
+Unlike traditional approaches that require training and hosting custom computer vision models, Smart Fashion Assistant leverages multimodal Large Language Models (Claude). Images of your existing clothes and the new item are sent directly within the prompt alongside contextual data for accurate and cost-effective analysis.
 
 ---
 
 ## UI/UX Design
 
-The user interface was fully conceptualized and designed in **Figma** before implementation.
+The user interface was fully conceptualized and designed in Figma before implementation.
 
 ---
 
